@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */; };
+		04CB520D2A18B90D00EBDCB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */; };
 		288FF80C206DB231000932BA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 288FF80B206DB231000932BA /* README.md */; };
 		28C69F49204F6ACA00949F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C69F48204F6ACA00949F30 /* AppDelegate.swift */; };
 		28C69F4B204F6ACA00949F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C69F4A204F6ACA00949F30 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		288FF80B206DB231000932BA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		28C69F45204F6ACA00949F30 /* VisionFaceTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionFaceTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C69F48204F6ACA00949F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -24,8 +28,8 @@
 		28C69F4F204F6ACA00949F30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28C69F52204F6ACA00949F30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28C69F54204F6ACA00949F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4231095939659F544A7FE2D5 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
-		F768C173AC32106E22037F17 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		4231095939659F544A7FE2D5 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		F768C173AC32106E22037F17 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04CB520E2A18BC7C00EBDCB1 /* Base FIles */ = {
+			isa = PBXGroup;
+			children = (
+				28C69F48204F6ACA00949F30 /* AppDelegate.swift */,
+				28C69F4F204F6ACA00949F30 /* Assets.xcassets */,
+				28C69F51204F6ACA00949F30 /* LaunchScreen.storyboard */,
+			);
+			path = "Base FIles";
+			sourceTree = "<group>";
+		};
+		04CB520F2A18BCF800EBDCB1 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				28C69F4C204F6ACA00949F30 /* Main.storyboard */,
+				04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */,
+				28C69F4A204F6ACA00949F30 /* ViewController.swift */,
+				04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		2207EA02D23BDB5081DFC66D /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,12 +94,9 @@
 		28C69F47204F6ACA00949F30 /* VisionFaceTrack */ = {
 			isa = PBXGroup;
 			children = (
-				28C69F48204F6ACA00949F30 /* AppDelegate.swift */,
-				28C69F4A204F6ACA00949F30 /* ViewController.swift */,
-				28C69F4C204F6ACA00949F30 /* Main.storyboard */,
-				28C69F4F204F6ACA00949F30 /* Assets.xcassets */,
-				28C69F51204F6ACA00949F30 /* LaunchScreen.storyboard */,
 				28C69F54204F6ACA00949F30 /* Info.plist */,
+				04CB520E2A18BC7C00EBDCB1 /* Base FIles */,
+				04CB520F2A18BCF800EBDCB1 /* Scenes */,
 			);
 			path = VisionFaceTrack;
 			sourceTree = "<group>";
@@ -84,7 +106,6 @@
 			children = (
 				4231095939659F544A7FE2D5 /* LICENSE.txt */,
 			);
-			name = LICENSE;
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
@@ -164,6 +185,8 @@
 			files = (
 				28C69F4B204F6ACA00949F30 /* ViewController.swift in Sources */,
 				28C69F49204F6ACA00949F30 /* AppDelegate.swift in Sources */,
+				04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */,
+				04CB520D2A18B90D00EBDCB1 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MTL5N7KWYL;
 				INFOPLIST_FILE = "$(SRCROOT)/VisionFaceTrack/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -326,7 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MTL5N7KWYL;
 				INFOPLIST_FILE = "$(SRCROOT)/VisionFaceTrack/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

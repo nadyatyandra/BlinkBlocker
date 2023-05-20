@@ -14,6 +14,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // Main view for showing camera content.
     @IBOutlet weak var previewView: UIView?
     
+    @IBOutlet weak var imageView: UIImageView?
+    
     // AVCapture variables to hold sequence data
     var session: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -29,6 +31,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var detectionOverlayLayer: CALayer?
     var detectedFaceRectangleShapeLayer: CAShapeLayer?
     var detectedFaceLandmarksShapeLayer: CAShapeLayer?
+//    var detectedInstructionShapeLayer: CAShapeLayer?
     
     // Vision requests
     private var detectionRequests: [VNDetectFaceRectanglesRequest]?
@@ -40,6 +43,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         self.session = self.setupAVCaptureSession()
         
@@ -274,8 +279,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                                          width: captureDeviceResolution.width,
                                          height: captureDeviceResolution.height)
         
+//        let captureTranslatedDeviceBounds = CGRect(x: 0,
+//                                                   y: -1000,
+//                                                   width: captureDeviceResolution.width,
+//                                                   height: captureDeviceResolution.height)
+        
         let captureDeviceBoundsCenterPoint = CGPoint(x: captureDeviceBounds.midX,
                                                      y: captureDeviceBounds.midY)
+        
+//        let captureInstructionBoundsCenterPoint = CGPoint(x: captureTranslatedDeviceBounds.midX,
+//                                                          y: captureTranslatedDeviceBounds.midY)
         
         let normalizedCenterPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -290,6 +303,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         overlayLayer.anchorPoint = normalizedCenterPoint
         overlayLayer.bounds = captureDeviceBounds
         overlayLayer.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
+        
+//        let translatedOverlayLayer = CALayer()
+//        translatedOverlayLayer.name = "TranslatedDetectionOverlay"
+//        translatedOverlayLayer.masksToBounds = true
+//        translatedOverlayLayer.anchorPoint = normalizedCenterPoint
+//        translatedOverlayLayer.bounds = captureTranslatedDeviceBounds
+//        translatedOverlayLayer.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         
         let faceRectangleShapeLayer = CAShapeLayer()
         faceRectangleShapeLayer.name = "RectangleOutlineLayer"
@@ -313,13 +333,28 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         faceLandmarksShapeLayer.shadowOpacity = 0.7
         faceLandmarksShapeLayer.shadowRadius = 5
         
+//        let instructionShapeLayer = CAShapeLayer()
+//        instructionShapeLayer.name = "InstructionLayer"
+//        instructionShapeLayer.bounds = captureTranslatedDeviceBounds
+//        instructionShapeLayer.anchorPoint = normalizedCenterPoint
+//        instructionShapeLayer.position = captureInstructionBoundsCenterPoint
+//        instructionShapeLayer.fillColor = nil
+//        instructionShapeLayer.strokeColor = UIColor.blue.withAlphaComponent(0.7).cgColor
+//        instructionShapeLayer.lineWidth = 3
+//        instructionShapeLayer.shadowOpacity = 0.7
+//        instructionShapeLayer.shadowRadius = 5
+        
         overlayLayer.addSublayer(faceRectangleShapeLayer)
         faceRectangleShapeLayer.addSublayer(faceLandmarksShapeLayer)
         rootLayer.addSublayer(overlayLayer)
         
+//        translatedOverlayLayer.addSublayer(instructionShapeLayer)
+//        rootLayer.addSublayer(translatedOverlayLayer)
+        
         self.detectionOverlayLayer = overlayLayer
         self.detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
         self.detectedFaceLandmarksShapeLayer = faceLandmarksShapeLayer
+//        self.detectedInstructionShapeLayer = instructionShapeLayer
         
         self.updateLayerGeometry()
     }
@@ -386,6 +421,43 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
+    fileprivate func addPointsEye(in landmarkRegion: VNFaceLandmarkRegion2D, to path: CGMutablePath, applying affineTransform: CGAffineTransform, closingWhenComplete closePath: Bool) {
+        let pointCount = landmarkRegion.pointCount
+        if pointCount > 1 {
+            let points: [CGPoint] = landmarkRegion.normalizedPoints
+            path.move(to: points[0], transform: affineTransform)
+            path.addLines(between: points, transform: affineTransform)
+            
+//            print(points)
+            
+            let var1 = sqrt(pow(points[1].x - points[5].x, 2) + pow(points[1].y - points[5].y, 2))
+            let var2 = sqrt(pow(points[2].x - points[4].x, 2) + pow(points[2].y - points[4].y, 2))
+            let var3 = sqrt(pow(points[0].x - points[3].x, 2) + pow(points[0].y - points[3].y, 2))
+            
+            let isBlink = (var1 + var2) / (2 * var3)
+            
+//            print(isBlink)
+            
+            if isBlink < 0.1 {
+                print("blink")
+                
+                let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                
+                self.navigationController?.pushViewController(storyboard, animated: true)
+            }
+            
+//            let tap = CGPoint(x: points[0].x, y: points[0].y)
+//            let convertedTap = previewView?.convert(tap, to: imageView)
+            
+//            imageView?.layer.position = points[0]
+            
+            if closePath {
+                path.addLine(to: points[0], transform: affineTransform)
+                path.closeSubpath()
+            }
+        }
+    }
+    
     fileprivate func addIndicators(to faceRectanglePath: CGMutablePath, faceLandmarksPath: CGMutablePath, for faceObservation: VNFaceObservation) {
         let displaySize = self.captureDeviceResolution
         
@@ -409,16 +481,25 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 self.addPoints(in: openLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: false)
             }
             
-            // Draw eyes, lips, and nose as closed regions.
+            // Draw lips and nose as closed regions.
             let closedLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
-                landmarks.leftEye,
-                landmarks.rightEye,
                 landmarks.outerLips,
                 landmarks.innerLips,
                 landmarks.nose
             ]
+            
             for closedLandmarkRegion in closedLandmarkRegions where closedLandmarkRegion != nil {
                 self.addPoints(in: closedLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: true)
+            }
+            
+            // Draw eyes as closed regions.
+            let eyeLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
+                landmarks.leftEye,
+                landmarks.rightEye
+            ]
+            
+            for eyeLandmarkRegion in eyeLandmarkRegions where eyeLandmarkRegions != nil {
+                self.addPointsEye(in: eyeLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: true)
             }
         }
     }
