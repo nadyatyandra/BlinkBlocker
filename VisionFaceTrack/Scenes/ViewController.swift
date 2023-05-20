@@ -11,9 +11,10 @@ import Vision
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    // Main view for showing camera content.
+    // Main view for showing camera content
     @IBOutlet weak var previewView: UIView?
     
+    // Face filter image
     @IBOutlet weak var imageView: UIImageView?
     
     // AVCapture variables to hold sequence data
@@ -45,6 +46,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
+        MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
         
         self.session = self.setupAVCaptureSession()
         
@@ -439,10 +442,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 //            print(isBlink)
             
             if isBlink < 0.1 {
-                print("blink")
+//                print("blink")
                 
+                MusicPlayer.shared.stopBackgroundMusic()
+                MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Blink", format: "wav")
                 let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-                
                 self.navigationController?.pushViewController(storyboard, animated: true)
             }
             

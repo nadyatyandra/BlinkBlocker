@@ -9,15 +9,23 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    @IBOutlet weak var image: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
+        MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Home", format: "mp3")
 
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func playGame(_ sender: Any) {
+        MusicPlayer.shared.stopBackgroundMusic()
+//        MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
+        let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
 
     /*
     // MARK: - Navigation

@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */; };
 		04CB520D2A18B90D00EBDCB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */; };
-		288FF80C206DB231000932BA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 288FF80B206DB231000932BA /* README.md */; };
+		04CB52122A18C4AA00EBDCB1 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */; };
+		04CB52142A18C5BA00EBDCB1 /* Home.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CB52132A18C5BA00EBDCB1 /* Home.mp3 */; };
+		04CB52172A18CA9400EBDCB1 /* Game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CB52162A18CA9400EBDCB1 /* Game.mp3 */; };
+		04CB52192A18CD2200EBDCB1 /* Blink.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04CB52182A18CD2200EBDCB1 /* Blink.wav */; };
+		04F089512A18D26F009CA075 /* Tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04F089502A18D26F009CA075 /* Tap.wav */; };
 		28C69F49204F6ACA00949F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C69F48204F6ACA00949F30 /* AppDelegate.swift */; };
 		28C69F4B204F6ACA00949F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C69F4A204F6ACA00949F30 /* ViewController.swift */; };
 		28C69F4E204F6ACA00949F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C69F4C204F6ACA00949F30 /* Main.storyboard */; };
@@ -20,7 +24,11 @@
 /* Begin PBXFileReference section */
 		04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		288FF80B206DB231000932BA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		04CB52132A18C5BA00EBDCB1 /* Home.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Home.mp3; sourceTree = "<group>"; };
+		04CB52162A18CA9400EBDCB1 /* Game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Game.mp3; sourceTree = "<group>"; };
+		04CB52182A18CD2200EBDCB1 /* Blink.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Blink.wav; sourceTree = "<group>"; };
+		04F089502A18D26F009CA075 /* Tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Tap.wav; sourceTree = "<group>"; };
 		28C69F45204F6ACA00949F30 /* VisionFaceTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionFaceTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C69F48204F6ACA00949F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28C69F4A204F6ACA00949F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,14 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04CB520E2A18BC7C00EBDCB1 /* Base FIles */ = {
+		04CB520E2A18BC7C00EBDCB1 /* Base Files */ = {
 			isa = PBXGroup;
 			children = (
 				28C69F48204F6ACA00949F30 /* AppDelegate.swift */,
 				28C69F4F204F6ACA00949F30 /* Assets.xcassets */,
+				04CB52152A18C5E200EBDCB1 /* Sound */,
 				28C69F51204F6ACA00949F30 /* LaunchScreen.storyboard */,
 			);
-			path = "Base FIles";
+			path = "Base Files";
 			sourceTree = "<group>";
 		};
 		04CB520F2A18BCF800EBDCB1 /* Scenes */ = {
@@ -64,6 +73,25 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		04CB52102A18C48900EBDCB1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		04CB52152A18C5E200EBDCB1 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				04CB52132A18C5BA00EBDCB1 /* Home.mp3 */,
+				04CB52162A18CA9400EBDCB1 /* Game.mp3 */,
+				04CB52182A18CD2200EBDCB1 /* Blink.wav */,
+				04F089502A18D26F009CA075 /* Tap.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		2207EA02D23BDB5081DFC66D /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +103,6 @@
 		28C69F3C204F6ACA00949F30 = {
 			isa = PBXGroup;
 			children = (
-				288FF80B206DB231000932BA /* README.md */,
 				28C69F47204F6ACA00949F30 /* VisionFaceTrack */,
 				28C69F46204F6ACA00949F30 /* Products */,
 				2207EA02D23BDB5081DFC66D /* Configuration */,
@@ -95,7 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				28C69F54204F6ACA00949F30 /* Info.plist */,
-				04CB520E2A18BC7C00EBDCB1 /* Base FIles */,
+				04CB52102A18C48900EBDCB1 /* Helpers */,
+				04CB520E2A18BC7C00EBDCB1 /* Base Files */,
 				04CB520F2A18BCF800EBDCB1 /* Scenes */,
 			);
 			path = VisionFaceTrack;
@@ -169,9 +197,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CB52172A18CA9400EBDCB1 /* Game.mp3 in Resources */,
 				28C69F53204F6ACA00949F30 /* LaunchScreen.storyboard in Resources */,
 				28C69F50204F6ACA00949F30 /* Assets.xcassets in Resources */,
-				288FF80C206DB231000932BA /* README.md in Resources */,
+				04CB52192A18CD2200EBDCB1 /* Blink.wav in Resources */,
+				04CB52142A18C5BA00EBDCB1 /* Home.mp3 in Resources */,
+				04F089512A18D26F009CA075 /* Tap.wav in Resources */,
 				28C69F4E204F6ACA00949F30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +217,7 @@
 				28C69F4B204F6ACA00949F30 /* ViewController.swift in Sources */,
 				28C69F49204F6ACA00949F30 /* AppDelegate.swift in Sources */,
 				04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */,
+				04CB52122A18C4AA00EBDCB1 /* MusicPlayer.swift in Sources */,
 				04CB520D2A18B90D00EBDCB1 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
