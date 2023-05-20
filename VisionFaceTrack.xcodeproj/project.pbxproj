@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0495A83F2A194673004E6130 /* TimeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495A83E2A194673004E6130 /* TimeModifier.swift */; };
+		0495A8412A194CC5004E6130 /* Countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0495A8402A194CC5004E6130 /* Countdown.wav */; };
 		04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */; };
 		04CB520D2A18B90D00EBDCB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */; };
 		04CB52122A18C4AA00EBDCB1 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0495A83E2A194673004E6130 /* TimeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModifier.swift; sourceTree = "<group>"; };
+		0495A8402A194CC5004E6130 /* Countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Countdown.wav; sourceTree = "<group>"; };
 		04CB520A2A18AF9F00EBDCB1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		04CB520C2A18B90D00EBDCB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				04CB52112A18C4AA00EBDCB1 /* MusicPlayer.swift */,
+				0495A83E2A194673004E6130 /* TimeModifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -88,6 +93,7 @@
 				04CB52162A18CA9400EBDCB1 /* Game.mp3 */,
 				04CB52182A18CD2200EBDCB1 /* Blink.wav */,
 				04F089502A18D26F009CA075 /* Tap.wav */,
+				0495A8402A194CC5004E6130 /* Countdown.wav */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 				28C69F50204F6ACA00949F30 /* Assets.xcassets in Resources */,
 				04CB52192A18CD2200EBDCB1 /* Blink.wav in Resources */,
 				04CB52142A18C5BA00EBDCB1 /* Home.mp3 in Resources */,
+				0495A8412A194CC5004E6130 /* Countdown.wav in Resources */,
 				04F089512A18D26F009CA075 /* Tap.wav in Resources */,
 				28C69F4E204F6ACA00949F30 /* Main.storyboard in Resources */,
 			);
@@ -215,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C69F4B204F6ACA00949F30 /* ViewController.swift in Sources */,
+				0495A83F2A194673004E6130 /* TimeModifier.swift in Sources */,
 				28C69F49204F6ACA00949F30 /* AppDelegate.swift in Sources */,
 				04CB520B2A18AF9F00EBDCB1 /* ResultViewController.swift in Sources */,
 				04CB52122A18C4AA00EBDCB1 /* MusicPlayer.swift in Sources */,

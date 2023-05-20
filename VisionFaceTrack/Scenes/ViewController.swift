@@ -17,6 +17,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // Face filter image
     @IBOutlet weak var imageView: UIImageView?
     
+    // Initial Timer
+    @IBOutlet weak var initialTimerView: UILabel?
+    var time = 3
+    var timer = Timer()
+    
     // AVCapture variables to hold sequence data
     var session: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -44,16 +49,24 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
-        
-        MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
-        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
+        MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
         self.session = self.setupAVCaptureSession()
-        
         self.prepareVisionRequest()
-        
         self.session?.startRunning()
+    }
+    
+    @objc func countdown() {
+        MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
+        time -= 1
+        initialTimerView?.text = String(time)
+        
+        if time == 0 {
+            timer.invalidate()
+            initialTimerView?.text = nil
+            MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
+        }
     }
     
     override func didReceiveMemoryWarning() {
