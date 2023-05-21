@@ -1,5 +1,5 @@
 //
-//  ResultViewController.swift
+//  LoseViewController.swift
 //  VisionFaceTrack
 //
 //  Created by Nadya Tyandra on 20/05/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultViewController: UIViewController {
+class LoseViewController: UIViewController {
     
     @IBOutlet weak var image1: UIImageView!
     @IBOutlet weak var image2: UIImageView!

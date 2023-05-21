@@ -63,12 +63,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WO3-Xe-4Xp">
-                                <rect key="frame" x="67" y="342" width="240" height="128"/>
+                                <rect key="frame" x="67" y="67" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHB-Js-yBw">
                                 <rect key="frame" x="157" y="382" width="61" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1w-8l-w0h">
+                                <rect key="frame" x="155" y="100" width="64" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -80,6 +87,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fZg-yT-R8S"/>
                     <connections>
+                        <outlet property="gameTimerView" destination="f1w-8l-w0h" id="7lu-Cz-ltG"/>
                         <outlet property="imageView" destination="WO3-Xe-4Xp" id="baQ-nP-Rdl"/>
                         <outlet property="initialTimerView" destination="qHB-Js-yBw" id="bX5-nx-tOB"/>
                         <outlet property="previewView" destination="mP4-Op-A0V" id="zS5-gc-9O7"/>
@@ -89,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="904.79999999999995" y="-63.546798029556655"/>
         </scene>
-        <!--Result View Controller-->
+        <!--Lose View Controller-->
         <scene sceneID="2QT-mQ-i8i">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fGP-Ou-uTF" customClass="ResultViewController" customModule="VisionFaceTrack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fGP-Ou-uTF" customClass="LoseViewController" customModule="VisionFaceTrack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YgA-Kl-ZdY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,8 +126,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How long" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1G-bW-HSn">
-                                <rect key="frame" x="151" y="74" width="72" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU LOSE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1G-bW-HSn">
+                                <rect key="frame" x="151" y="74" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -161,6 +169,72 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1936.8" y="-63.418290854572717"/>
+        </scene>
+        <!--Win View Controller-->
+        <scene sceneID="7Ad-Xb-xNv">
+            <objects>
+                <viewController storyboardIdentifier="WinViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lnx-RZ-jVy" customClass="WinViewController" customModule="VisionFaceTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9qR-SR-PhI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU WIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU9-qz-bz1">
+                                <rect key="frame" x="151" y="79" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back to Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2c-Zx-8ys">
+                                <rect key="frame" x="134" y="220" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Play Again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmH-7r-LDm">
+                                <rect key="frame" x="148" y="512" width="79" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="vf1-Iz-tvT">
+                                <rect key="frame" x="67" y="249" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="X9Z-Wv-lLf" appends="YES" id="DOP-9u-iHD"/>
+                                </connections>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="Bxs-ce-jrF">
+                                <rect key="frame" x="67" y="541" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ltG-5K-axm" appends="YES" id="Mws-vS-bic"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3jz-of-CZg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="image1" destination="vf1-Iz-tvT" id="Bkf-5q-OL8"/>
+                        <outlet property="image2" destination="Bxs-ce-jrF" id="vem-hv-8z0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p5a-HV-rFI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="X9Z-Wv-lLf">
+                    <connections>
+                        <action selector="backToHome:" destination="Lnx-RZ-jVy" id="euF-ZA-sk2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ltG-5K-axm">
+                    <connections>
+                        <action selector="playAgain:" destination="Lnx-RZ-jVy" id="bhJ-1W-Rz2"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2777" y="-64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VnB-Fj-5AR">

@@ -22,6 +22,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var time = 3
     var timer = Timer()
     
+    // Game Timer
+    @IBOutlet weak var gameTimerView: UILabel?
+    var gameTime = 5
+    var gameTimer = Timer()
+    
     // AVCapture variables to hold sequence data
     var session: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -66,6 +71,20 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             timer.invalidate()
             initialTimerView?.text = nil
             MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
+            gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.gameCountdown), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func gameCountdown() {
+        gameTime -= 1
+        gameTimerView?.text = TimeModifier.shared.timeFormatted(gameTime)
+        
+        if gameTime == 0 {
+            gameTimer.invalidate()
+            MusicPlayer.shared.stopBackgroundMusic()
+            MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Win", format: "wav")
+            let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
+            self.navigationController?.pushViewController(storyboard, animated: true)
         }
     }
     
@@ -459,14 +478,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 
                 MusicPlayer.shared.stopBackgroundMusic()
                 MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Blink", format: "wav")
-                let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "LoseViewController") as! LoseViewController
                 self.navigationController?.pushViewController(storyboard, animated: true)
             }
             
-//            let tap = CGPoint(x: points[0].x, y: points[0].y)
-//            let convertedTap = previewView?.convert(tap, to: imageView)
-            
-//            imageView?.layer.position = points[0]
+//            let initialPoint = CGPoint(x: points[0].x, y: points[0].y)
+//            let convertedPoint = previewView?.convert(initialPoint, to: imageView)
+//            
+//            imageView?.layer.position = convertedPoint!
             
             if closePath {
                 path.addLine(to: points[0], transform: affineTransform)
