@@ -28,7 +28,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     // Game Timer
     @IBOutlet weak var gameTimerView: UILabel?
-    var gameTime = 5
+    var gameTime = 60
     var gameTimer = Timer()
     
     // AVCapture variables to hold sequence data
@@ -62,7 +62,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
         MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
         self.session = self.setupAVCaptureSession()
-        self.prepareVisionRequest()
         self.session?.startRunning()
     }
     
@@ -74,6 +73,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         if time == 0 {
             timer.invalidate()
             countdownTimerView.image = nil
+            self.prepareVisionRequest()
             MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
             gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.gameCountdown), userInfo: nil, repeats: true)
         }
@@ -84,6 +84,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         gameTimerView?.text = TimeModifier.shared.timeFormatted(gameTime)
         
         if gameTime == 0 {
+            self.session?.stopRunning()
             gameTimer.invalidate()
             MusicPlayer.shared.stopBackgroundMusic()
             MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Win", format: "wav")
@@ -475,11 +476,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             let isBlink = (var1 + var2) / (2 * var3)
             
-//            print(isBlink)
-            
             if isBlink < 0.1 {
-//                print("blink")
-                
+                self.session?.stopRunning()
+                gameTimer.invalidate()
                 MusicPlayer.shared.stopBackgroundMusic()
                 MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Blink", format: "wav")
                 let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "LoseViewController") as! LoseViewController

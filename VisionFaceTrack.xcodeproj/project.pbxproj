@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04101D4C2A1B3FD800D4D658 /* GAMERIA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04101D4B2A1B376500D4D658 /* GAMERIA.ttf */; };
 		0434A88C2A1A6CE600F920B7 /* Win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0434A88B2A1A6CE600F920B7 /* Win.wav */; };
 		0434A8902A1A829F00F920B7 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0434A88F2A1A829F00F920B7 /* WinViewController.swift */; };
 		0495A83F2A194673004E6130 /* TimeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495A83E2A194673004E6130 /* TimeModifier.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04101D4B2A1B376500D4D658 /* GAMERIA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GAMERIA.ttf; sourceTree = "<group>"; };
 		0434A88B2A1A6CE600F920B7 /* Win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Win.wav; sourceTree = "<group>"; };
 		0434A88F2A1A829F00F920B7 /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		0495A83E2A194673004E6130 /* TimeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModifier.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				28C69F48204F6ACA00949F30 /* AppDelegate.swift */,
 				28C69F4F204F6ACA00949F30 /* Assets.xcassets */,
+				04101D4B2A1B376500D4D658 /* GAMERIA.ttf */,
 				04CB52152A18C5E200EBDCB1 /* Sound */,
 				28C69F51204F6ACA00949F30 /* LaunchScreen.storyboard */,
 			);
@@ -214,6 +217,7 @@
 				28C69F53204F6ACA00949F30 /* LaunchScreen.storyboard in Resources */,
 				28C69F50204F6ACA00949F30 /* Assets.xcassets in Resources */,
 				04CB52192A18CD2200EBDCB1 /* Blink.wav in Resources */,
+				04101D4C2A1B3FD800D4D658 /* GAMERIA.ttf in Resources */,
 				04CB52142A18C5BA00EBDCB1 /* Home.mp3 in Resources */,
 				0495A8412A194CC5004E6130 /* Countdown.wav in Resources */,
 				04F089512A18D26F009CA075 /* Tap.wav in Resources */,
