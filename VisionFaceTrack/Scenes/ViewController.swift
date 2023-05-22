@@ -17,8 +17,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // Face filter image
     @IBOutlet weak var imageView: UIImageView?
     
-    // Initial Timer
-    @IBOutlet weak var initialTimerView: UILabel?
+    // Countdown Timer
+    @IBOutlet weak var countdownTimerView: UIImageView! {
+        didSet {
+            countdownTimerView.image = UIImage(named: "3")
+        }
+    }
     var time = 3
     var timer = Timer()
     
@@ -65,11 +69,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @objc func countdown() {
         MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
         time -= 1
-        initialTimerView?.text = String(time)
+        countdownTimerView.image = UIImage(named: String(time))
         
         if time == 0 {
             timer.invalidate()
-            initialTimerView?.text = nil
+            countdownTimerView.image = nil
             MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Game", format: "mp3")
             gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.gameCountdown), userInfo: nil, repeats: true)
         }

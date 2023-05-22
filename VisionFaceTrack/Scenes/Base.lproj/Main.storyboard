@@ -62,18 +62,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOS-zR-Eps">
+                                <rect key="frame" x="67" y="342" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WO3-Xe-4Xp">
                                 <rect key="frame" x="67" y="67" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHB-Js-yBw">
-                                <rect key="frame" x="157" y="382" width="61" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1w-8l-w0h">
                                 <rect key="frame" x="155" y="100" width="64" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -87,9 +84,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="fZg-yT-R8S"/>
                     <connections>
+                        <outlet property="countdownTimerView" destination="wOS-zR-Eps" id="eca-K7-aNT"/>
                         <outlet property="gameTimerView" destination="f1w-8l-w0h" id="7lu-Cz-ltG"/>
                         <outlet property="imageView" destination="WO3-Xe-4Xp" id="baQ-nP-Rdl"/>
-                        <outlet property="initialTimerView" destination="qHB-Js-yBw" id="bX5-nx-tOB"/>
                         <outlet property="previewView" destination="mP4-Op-A0V" id="zS5-gc-9O7"/>
                     </connections>
                 </viewController>
@@ -168,7 +165,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1936.8" y="-63.418290854572717"/>
+            <point key="canvasLocation" x="1802" y="-63"/>
         </scene>
         <!--Win View Controller-->
         <scene sceneID="7Ad-Xb-xNv">
@@ -234,7 +231,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2777" y="-64"/>
+            <point key="canvasLocation" x="2642" y="-64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VnB-Fj-5AR">
