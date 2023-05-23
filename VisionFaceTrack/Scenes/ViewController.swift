@@ -28,7 +28,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     // Game Timer
     @IBOutlet weak var gameTimerView: UILabel?
-    var gameTime = 60
+    var gameTime = 5
     var gameTimer = Timer()
     
     // AVCapture variables to hold sequence data
@@ -40,6 +40,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     var captureDevice: AVCaptureDevice?
     var captureDeviceResolution: CGSize = CGSize()
+    
+    var isRunning: Bool = true
     
     // Layer UI for drawing Vision results
     var rootLayer: CALayer?
@@ -476,7 +478,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             let isBlink = (var1 + var2) / (2 * var3)
             
-            if isBlink < 0.1 {
+            if isBlink < 0.1 && isRunning == true {
+                isRunning.toggle()
                 self.session?.stopRunning()
                 gameTimer.invalidate()
                 MusicPlayer.shared.stopBackgroundMusic()
@@ -487,7 +490,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
 //            let initialPoint = CGPoint(x: points[0].x, y: points[0].y)
 //            let convertedPoint = previewView?.convert(initialPoint, to: imageView)
-//            
+//
 //            imageView?.layer.position = convertedPoint!
             
             if closePath {
