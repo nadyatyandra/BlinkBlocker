@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     func assignBackground(){
-        let background = UIImage(named: "wallpaper.jpg")
+        let background = UIImage(named: "home")
 
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -30,8 +30,31 @@ class HomeViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         MusicPlayer.shared.playBackgroundMusic(backgroundMusicFileName: "Home", format: "mp3")
         assignBackground()
+        zoomIn()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func zoomIn() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.image.layer.opacity = 1
+        }) { _ in
+            self.zoomOut()
+        }
+    }
+    
+    func zoomOut() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image.transform = CGAffineTransform.identity
+            self.image.layer.opacity = 1
+        }) { _ in
+            self.zoomIn()
+        }
     }
     
     @IBAction func playGame(_ sender: Any) {

@@ -14,7 +14,7 @@ class LoseViewController: UIViewController {
     @IBOutlet weak var image2: UIImageView!
     
     func assignBackground(){
-        let background = UIImage(named: "wallpaper.jpg")
+        let background = UIImage(named: "lose")
 
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -30,8 +30,54 @@ class LoseViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         assignBackground()
+        zoomInHome()
+        zoomInReplay()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func zoomInHome() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image1.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.image1.layer.opacity = 1
+        }) { _ in
+            self.zoomOutHome()
+        }
+    }
+    
+    func zoomOutHome() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image1.transform = CGAffineTransform.identity
+            self.image1.layer.opacity = 1
+        }) { _ in
+            self.zoomInHome()
+        }
+    }
+    
+    func zoomInReplay() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image2.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.image2.layer.opacity = 1
+        }) { _ in
+            self.zoomOutReplay()
+        }
+    }
+    
+    func zoomOutReplay() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+            self.image2.transform = CGAffineTransform.identity
+            self.image2.layer.opacity = 1
+        }) { _ in
+            self.zoomInReplay()
+        }
     }
 
     @IBAction func backToHome(_ sender: Any) {
