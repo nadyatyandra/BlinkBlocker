@@ -14,7 +14,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // Main view for showing camera content
     @IBOutlet weak var previewView: UIView?
     
-    // Face filter image
+    // Countdown Board image
     @IBOutlet weak var imageView: UIImageView?
     
     // Countdown Timer
@@ -28,8 +28,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     // Game Timer
     @IBOutlet weak var gameTimerView: UILabel?
-    var gameTime = 5
+    var gameTime = 60
     var gameTimer = Timer()
+    
+    // Filter Frame
+    @IBOutlet weak var frame1: UIImageView?
     
     // AVCapture variables to hold sequence data
     var session: AVCaptureSession?
@@ -48,7 +51,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var detectionOverlayLayer: CALayer?
     var detectedFaceRectangleShapeLayer: CAShapeLayer?
     var detectedFaceLandmarksShapeLayer: CAShapeLayer?
-//    var detectedInstructionShapeLayer: CAShapeLayer?
     
     // Vision requests
     private var detectionRequests: [VNDetectFaceRectanglesRequest]?
@@ -65,6 +67,31 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
         self.session = self.setupAVCaptureSession()
         self.session?.startRunning()
+        tiltRight(frame: frame1!)
+    }
+    
+    func tiltRight(frame: UIImageView) {
+        UIView.animate(withDuration: 1.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            frame.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 8)
+            frame.layer.opacity = 1
+        }) { _ in
+            self.tiltLeft(frame: frame)
+        }
+    }
+    
+    func tiltLeft(frame: UIImageView) {
+        UIView.animate(withDuration: 1.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            frame.transform = .identity
+            frame.layer.opacity = 1
+        }) { _ in
+            self.tiltRight(frame: frame)
+        }
     }
     
     @objc func countdown() {
@@ -321,16 +348,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                                          width: captureDeviceResolution.width,
                                          height: captureDeviceResolution.height)
         
-//        let captureTranslatedDeviceBounds = CGRect(x: 0,
-//                                                   y: -1000,
-//                                                   width: captureDeviceResolution.width,
-//                                                   height: captureDeviceResolution.height)
-        
         let captureDeviceBoundsCenterPoint = CGPoint(x: captureDeviceBounds.midX,
                                                      y: captureDeviceBounds.midY)
-        
-//        let captureInstructionBoundsCenterPoint = CGPoint(x: captureTranslatedDeviceBounds.midX,
-//                                                          y: captureTranslatedDeviceBounds.midY)
         
         let normalizedCenterPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -345,13 +364,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         overlayLayer.anchorPoint = normalizedCenterPoint
         overlayLayer.bounds = captureDeviceBounds
         overlayLayer.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
-        
-//        let translatedOverlayLayer = CALayer()
-//        translatedOverlayLayer.name = "TranslatedDetectionOverlay"
-//        translatedOverlayLayer.masksToBounds = true
-//        translatedOverlayLayer.anchorPoint = normalizedCenterPoint
-//        translatedOverlayLayer.bounds = captureTranslatedDeviceBounds
-//        translatedOverlayLayer.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         
         let faceRectangleShapeLayer = CAShapeLayer()
         faceRectangleShapeLayer.name = "RectangleOutlineLayer"
@@ -375,29 +387,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         faceLandmarksShapeLayer.shadowOpacity = 0.7
         faceLandmarksShapeLayer.shadowRadius = 5
         
-//        let instructionShapeLayer = CAShapeLayer()
-//        instructionShapeLayer.name = "InstructionLayer"
-//        instructionShapeLayer.bounds = captureTranslatedDeviceBounds
-//        instructionShapeLayer.anchorPoint = normalizedCenterPoint
-//        instructionShapeLayer.position = captureInstructionBoundsCenterPoint
-//        instructionShapeLayer.fillColor = nil
-//        instructionShapeLayer.strokeColor = UIColor.blue.withAlphaComponent(0.7).cgColor
-//        instructionShapeLayer.lineWidth = 3
-//        instructionShapeLayer.shadowOpacity = 0.7
-//        instructionShapeLayer.shadowRadius = 5
-        
         overlayLayer.addSublayer(faceRectangleShapeLayer)
         faceRectangleShapeLayer.addSublayer(faceLandmarksShapeLayer)
         rootLayer.addSublayer(overlayLayer)
         
-//        translatedOverlayLayer.addSublayer(instructionShapeLayer)
-//        rootLayer.addSublayer(translatedOverlayLayer)
-        
         self.detectionOverlayLayer = overlayLayer
         self.detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
         self.detectedFaceLandmarksShapeLayer = faceLandmarksShapeLayer
-//        self.detectedInstructionShapeLayer = instructionShapeLayer
-        
         self.updateLayerGeometry()
     }
     
@@ -470,15 +466,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             path.move(to: points[0], transform: affineTransform)
             path.addLines(between: points, transform: affineTransform)
             
-//            print(points)
-            
             let var1 = sqrt(pow(points[1].x - points[5].x, 2) + pow(points[1].y - points[5].y, 2))
             let var2 = sqrt(pow(points[2].x - points[4].x, 2) + pow(points[2].y - points[4].y, 2))
             let var3 = sqrt(pow(points[0].x - points[3].x, 2) + pow(points[0].y - points[3].y, 2))
-            
             let isBlink = (var1 + var2) / (2 * var3)
             
-            if isBlink < 0.1 && isRunning == true {
+            if isBlink < 0.15 && isRunning == true {
                 isRunning.toggle()
                 self.session?.stopRunning()
                 gameTimer.invalidate()
@@ -487,11 +480,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "LoseViewController") as! LoseViewController
                 self.navigationController?.pushViewController(storyboard, animated: true)
             }
-            
-//            let initialPoint = CGPoint(x: points[0].x, y: points[0].y)
-//            let convertedPoint = previewView?.convert(initialPoint, to: imageView)
-//
-//            imageView?.layer.position = convertedPoint!
             
             if closePath {
                 path.addLine(to: points[0], transform: affineTransform)

@@ -25,59 +25,39 @@ class LoseViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
+    
+    func zoomIn(image: UIImageView) {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            image.layer.opacity = 1
+        }) { _ in
+            self.zoomOut(image: image)
+        }
+    }
+    
+    func zoomOut(image: UIImageView) {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            image.transform = CGAffineTransform.identity
+            image.layer.opacity = 1
+        }) { _ in
+            self.zoomIn(image: image)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         assignBackground()
-        zoomInHome()
-        zoomInReplay()
+        zoomIn(image: image1)
+        zoomIn(image: image2)
 
         // Do any additional setup after loading the view.
-    }
-    
-    func zoomInHome() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
-            self.image1.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            self.image1.layer.opacity = 1
-        }) { _ in
-            self.zoomOutHome()
-        }
-    }
-    
-    func zoomOutHome() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
-            self.image1.transform = CGAffineTransform.identity
-            self.image1.layer.opacity = 1
-        }) { _ in
-            self.zoomInHome()
-        }
-    }
-    
-    func zoomInReplay() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
-            self.image2.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            self.image2.layer.opacity = 1
-        }) { _ in
-            self.zoomOutReplay()
-        }
-    }
-    
-    func zoomOutReplay() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
-            self.image2.transform = CGAffineTransform.identity
-            self.image2.layer.opacity = 1
-        }) { _ in
-            self.zoomInReplay()
-        }
     }
 
     @IBAction func backToHome(_ sender: Any) {

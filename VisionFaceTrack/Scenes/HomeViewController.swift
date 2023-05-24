@@ -38,7 +38,8 @@ class HomeViewController: UIViewController {
     func zoomIn() {
         UIView.animate(withDuration: 0.5,
                        delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
             self.image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             self.image.layer.opacity = 1
         }) { _ in
@@ -49,7 +50,8 @@ class HomeViewController: UIViewController {
     func zoomOut() {
         UIView.animate(withDuration: 0.5,
                        delay: 0,
-                       options: [.allowUserInteraction, .overrideInheritedOptions], animations: {
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
             self.image.transform = CGAffineTransform.identity
             self.image.layer.opacity = 1
         }) { _ in
