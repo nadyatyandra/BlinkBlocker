@@ -29,6 +29,14 @@
                                     <outletCollection property="gestureRecognizers" destination="hr5-n7-gMM" appends="YES" id="AVe-Xj-nuM"/>
                                 </connections>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KrI-ef-cwa">
+                                <rect key="frame" x="11" y="125" width="360" height="360"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instruction" translatesAutoresizingMaskIntoConstraints="NO" id="Iz4-U8-b9E">
+                                <rect key="frame" x="58" y="399" width="258" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iaq-Nh-Syl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -241,6 +249,8 @@
         <image name="frame 12" width="2500" height="2500"/>
         <image name="frame 15" width="2500" height="2500"/>
         <image name="frame 17" width="2500" height="2500"/>
+        <image name="instruction" width="3213" height="318"/>
+        <image name="logo" width="2605" height="2605"/>
         <image name="lose board" width="2646" height="1917"/>
         <image name="play" width="521" height="192"/>
         <image name="playAgain" width="437" height="450"/>
