@@ -33,6 +33,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     // Filter Frame
     @IBOutlet weak var frame1: UIImageView?
+    @IBOutlet weak var frame2: UIImageView?
+    @IBOutlet weak var frame3: UIImageView?
+    @IBOutlet weak var frame4: UIImageView?
+    @IBOutlet weak var frame5: UIImageView?
     
     // AVCapture variables to hold sequence data
     var session: AVCaptureSession?
@@ -67,30 +71,58 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         MusicPlayer.shared.playSoundEffect(soundEffectFileName: "Countdown", format: "wav")
         self.session = self.setupAVCaptureSession()
         self.session?.startRunning()
-        tiltRight(frame: frame1!)
+        tiltRightFirst(frame: frame1!, degree: 8, duration: 1.5)
+        tiltLeftFirst(frame: frame2!, degree: 7, duration: 2.0)
+        tiltLeftFirst(frame: frame3!, degree: 15, duration: 1.7)
+        tiltRightFirst(frame: frame4!, degree: 11, duration: 1.0)
+        tiltLeftFirst(frame: frame5!, degree: 10, duration: 1.3)
     }
     
-    func tiltRight(frame: UIImageView) {
-        UIView.animate(withDuration: 1.5,
+    func tiltRightFirst(frame: UIImageView, degree: Int, duration: Double) {
+        UIView.animate(withDuration: duration,
                        delay: 0,
                        options: [.allowUserInteraction, .overrideInheritedOptions],
                        animations: {
-            frame.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 8)
+            frame.transform = CGAffineTransform(rotationAngle: CGFloat.pi / CGFloat(degree))
             frame.layer.opacity = 1
         }) { _ in
-            self.tiltLeft(frame: frame)
+            self.tiltLeft(frame: frame, degree: degree, duration: duration)
         }
     }
     
-    func tiltLeft(frame: UIImageView) {
-        UIView.animate(withDuration: 1.5,
+    func tiltLeft(frame: UIImageView, degree: Int, duration: Double) {
+        UIView.animate(withDuration: duration,
                        delay: 0,
                        options: [.allowUserInteraction, .overrideInheritedOptions],
                        animations: {
             frame.transform = .identity
             frame.layer.opacity = 1
         }) { _ in
-            self.tiltRight(frame: frame)
+            self.tiltRightFirst(frame: frame, degree: degree, duration: duration)
+        }
+    }
+    
+    func tiltLeftFirst(frame: UIImageView, degree: Int, duration: Double) {
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            frame.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -CGFloat(degree))
+            frame.layer.opacity = 1
+        }) { _ in
+            self.tiltRight(frame: frame, degree: degree, duration: duration)
+        }
+    }
+    
+    func tiltRight(frame: UIImageView, degree: Int, duration: Double) {
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       options: [.allowUserInteraction, .overrideInheritedOptions],
+                       animations: {
+            frame.transform = .identity
+            frame.layer.opacity = 1
+        }) { _ in
+            self.tiltLeftFirst(frame: frame, degree: degree, duration: duration)
         }
     }
     
@@ -371,7 +403,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         faceRectangleShapeLayer.anchorPoint = normalizedCenterPoint
         faceRectangleShapeLayer.position = captureDeviceBoundsCenterPoint
         faceRectangleShapeLayer.fillColor = nil
-        faceRectangleShapeLayer.strokeColor = UIColor.green.withAlphaComponent(0.7).cgColor
+        faceRectangleShapeLayer.strokeColor = nil
         faceRectangleShapeLayer.lineWidth = 5
         faceRectangleShapeLayer.shadowOpacity = 0.7
         faceRectangleShapeLayer.shadowRadius = 5
@@ -382,7 +414,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         faceLandmarksShapeLayer.anchorPoint = normalizedCenterPoint
         faceLandmarksShapeLayer.position = captureDeviceBoundsCenterPoint
         faceLandmarksShapeLayer.fillColor = nil
-        faceLandmarksShapeLayer.strokeColor = UIColor.yellow.withAlphaComponent(0.7).cgColor
+        faceLandmarksShapeLayer.strokeColor = nil
         faceLandmarksShapeLayer.lineWidth = 3
         faceLandmarksShapeLayer.shadowOpacity = 0.7
         faceLandmarksShapeLayer.shadowRadius = 5
